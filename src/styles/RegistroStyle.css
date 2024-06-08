@@ -1,0 +1,107 @@
+.containerRegistro {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 40px 20px;
+  >h1{
+    font-size: 2rem;
+    color: #000;
+  }
+}
+.section {
+  min-width: 350px;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 900px;
+  border-radius: 20px;
+  overflow: hidden;
+  -webkit-box-shadow: 0px 5px 23px -12px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 23px -12px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 23px -12px rgba(0, 0, 0, 0.75);
+}
+.mensajes {
+  width: 50%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../assets/form2.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.containerMensaje {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.692);
+  padding: 40px;
+  gap: 10px;
+  > h2 {
+    width: 90%;
+    text-align: left;
+    font-size: 2.2rem;
+  }
+  > p {
+    text-align: left;
+    font-size: 1.06rem;
+  }
+}
+.formulario {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: black;
+  >input{
+    border: none;
+    border-bottom: 1px solid grey;
+    outline: none;
+    height: 40px;
+    text-align: left;
+    padding-left:10px ;
+    font-size: 1rem;
+    width: 80%;
+  }
+  >button{
+    width: 80%;
+    height: 40px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    background-color: rgb(63, 194, 218);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: #ffff;
+    margin-top: 20px;
+  }
+}
+
+@media (width < 800px) {
+  .section{
+    max-width: 500px;
+    padding: 0px 0px 20px 0px;
+    gap: 20px;
+    >.mensajes{
+      width: 100%;
+      height: 30%;
+    }
+    >.formulario{
+      width: 100%;
+    }
+  }
+}
