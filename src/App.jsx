@@ -6,6 +6,7 @@ import Main from "./views/Main";
 import MenuBar from "./views/MenuBar";
 import Registro from "./views/Registro";
 import Footer from "./views/Footer";
+import Renta from "./views/Renta";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" Component={Main}/>
             <Route path="/registro" Component={Registro}/>
+            <Route path="/rent" Component={Renta}/>
           </Routes>
           <Footer/>
         </BrowserRouter>

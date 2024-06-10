@@ -77,17 +77,22 @@
     font-size: 1rem;
     width: 80%;
   }
-  >button{
+  >.btnActivo{
     width: 80%;
     height: 40px;
-    font-size: 1.2rem;
-    font-weight: 800;
     background-color: rgb(63, 194, 218);
     border-radius: 10px;
     border: none;
     cursor: pointer;
-    color: #ffff;
     margin-top: 20px;
+    transition: all ease-in-out .3s;
+    overflow: hidden;
+    font-size: 1.3rem;
+    color: #ffff;
+    font-weight: 800;
+  }
+  >.btnActivo:hover{
+    background-color: rgb(19, 146, 168);
   }
 }
 
