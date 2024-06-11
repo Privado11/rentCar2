@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "../styles/MenuBar.css";
 import { contexto } from "../context/ContextoGeneral";
 
@@ -13,10 +13,6 @@ function MenuBar() {
     conversionFecha,
     setFiltroActual,
   } = useContext(contexto);
-
-  const [locacion, setLocacion] = useState("");
-  const [fechaInicial, setFechaInicial] = useState("");
-  const [fechaFinal, setFechaFinal] = useState("");
 
   function renderOpciones() {
     if (listaCiudades != null) {
@@ -36,24 +32,24 @@ function MenuBar() {
 
   function handleFiltrar(event) {
     event.preventDefault();
-    if (locacion !== "") {
-      const valor = { locacion, fechaInicial, fechaFinal };
+    const valor = Object.fromEntries(new window.FormData(event.target.form));
+    if (valor.locacion !== "Ciudades") {
       const verificacionForm = verificacion(valor);
       if (verificacionForm) {
-        const cityID = getIdCiudad(locacion);
-        const fechaI = conversionFecha(fechaInicial);
-        const fechaF = conversionFecha(fechaFinal);
+        const cityID = getIdCiudad(valor.locacion);
+        const fechaI = conversionFecha(valor.fechaInicial);
+        const fechaF = conversionFecha(valor.fechaFinal);
         const endPoint = `cars/availables?cityId=${cityID}&startDate=${fechaI}&endDate=${fechaF}`;
         getData(endPoint, urlBase, setListaAutosFiltrados);
+        let locacion = valor.locacion;
         setFiltroActual({ locacion, fechaI, fechaF });
       }
     }
   }
 
-  function handleBorrar() {
-    setLocacion("");
-    setFechaInicial("");
-    setFechaFinal("");
+  function handleBorrar(event) {
+    event.preventDefault();
+
     setListaAutosFiltrados(null);
     setFiltroActual({});
   }
@@ -62,27 +58,13 @@ function MenuBar() {
     <nav className="navBar">
       <form action="">
         <label>Ubicación:</label>
-        <select
-          name="locacion"
-          value={locacion}
-          onChange={(e) => setLocacion(e.target.value)}
-        >
+        <select name="locacion" id="">
           {renderOpciones()}
         </select>
         <label>Fecha Inicial:</label>
-        <input
-          type="date"
-          name="fechaInicial"
-          value={fechaInicial}
-          onChange={(e) => setFechaInicial(e.target.value)}
-        />
+        <input type="date" name="fechaInicial" id="" />
         <label>Fecha Final:</label>
-        <input
-          type="date"
-          name="fechaFinal"
-          value={fechaFinal}
-          onChange={(e) => setFechaFinal(e.target.value)}
-        />
+        <input type="date" name="fechaFinal" id="" />
         <button className="btnFiltro" onClick={handleFiltrar}>
           Filtrar
         </button>
