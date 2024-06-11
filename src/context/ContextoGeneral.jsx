@@ -10,11 +10,14 @@ function ContextoGeneral({ children }) {
   const [listaAutosFiltrados, setListaAutosFiltrados] = useState(null);
   const [listaCiudades, setListaCiudades] = useState(null);
   const [autoRentar, setAutoRentar] = useState();
-  const [filtroActual, setFiltroActual] = useState({locacion:'Bogotá',fechaI:'2024-05-01T10:30:00',fechaF:'2024-06-01T10:30:00'});
+  const [filtroActual, setFiltroActual] = useState({
+    locacion: "Bogotá",
+    fechaI: "2024-05-01T10:30:00",
+    fechaF: "2024-06-01T10:30:00",
+  });
   const [rentaActual, setRentaActual] = useState(null);
 
-  const urlBase =
-    "https://patient-cooperation-production.up.railway.app/api/v1";
+  const urlBase = "https://rentcar-production.up.railway.app/api/v1";
 
   useEffect(() => {
     getData("cars", urlBase, setListaAutos);
@@ -22,9 +25,9 @@ function ContextoGeneral({ children }) {
     getData("cities", urlBase, setListaCiudades);
   }, []);
 
-  function verificacion(formulario){
-    for (const key  in formulario) {
-      if (formulario.hasOwnProperty(key) && formulario[key] === '') {
+  function verificacion(formulario) {
+    for (const key in formulario) {
+      if (formulario.hasOwnProperty(key) && formulario[key] === "") {
         return false;
       }
     }
@@ -48,16 +51,15 @@ function ContextoGeneral({ children }) {
     }
   }
 
-  function conversionFecha(fecha){
+  function conversionFecha(fecha) {
     const fechaNew = new Date(fecha).toISOString();
     return fechaNew.slice(0, -5);
   }
 
   function getIdCiudad(ciudad) {
-    const ciudadEncontrada = listaCiudades.find(c => c.name == ciudad);
-    return ciudadEncontrada ? ciudadEncontrada.id : 'no';
+    const ciudadEncontrada = listaCiudades.find((c) => c.name == ciudad);
+    return ciudadEncontrada ? ciudadEncontrada.id : "no";
   }
-  
 
   return (
     <contexto.Provider
@@ -65,16 +67,24 @@ function ContextoGeneral({ children }) {
         listaAutos,
         setListaAutos,
         listaCiudades,
-        setListaCiudades,rentaActual, setRentaActual,
-        urlBase,filtroActual, setFiltroActual,
+        setListaCiudades,
+        rentaActual,
+        setRentaActual,
+        urlBase,
+        filtroActual,
+        setFiltroActual,
         listaAutosFiltrados,
         setListaAutosFiltrados,
         filtrarAutos,
         listaAutosRentados,
         setListaAutosRentados,
-        autoRentar,getData,
-        setAutoRentar,verificacion,getIdCiudad,
-        conversionFecha,postDato
+        autoRentar,
+        getData,
+        setAutoRentar,
+        verificacion,
+        getIdCiudad,
+        conversionFecha,
+        postDato,
       }}
     >
       {children}
