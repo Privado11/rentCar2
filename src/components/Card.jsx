@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import imgcar from "../assets/model-3.avif";
 
 function Card({ car }) {
-  const { brand, model, year, price, city, id } = car;
+  const { brand, model, year, price, salesBranch, id } = car;
 
   function handleClick() {
     setcarRentar(car);
@@ -13,13 +13,13 @@ function Card({ car }) {
   return (
     <div className="card">
       <div className="contenedorImagen">
-        <img src={imgcar} alt="imagen de car" />
+        <img src="" alt="imagen de car" />
       </div>
       <h2>{brand}</h2>
       <p>
         {model} {year}
       </p>
-      <span>{city.name}</span>
+      <span>{salesBranch?.city.name}</span>
       <span key={1}>${price}</span>
       <button onClick={handleClick}>
         <Link to={"registro"} className="linkCard">

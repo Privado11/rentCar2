@@ -24,7 +24,7 @@ function Register() {
     try {
       event.preventDefault();
       registerUser(user);
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error("Error al procesar el registro:", error);
     }
@@ -91,7 +91,7 @@ function Register() {
           />
 
           <p className="text">
-            Already have an account? <Link to={"/"}>Login</Link>
+            Already have an account? <Link to={"/login"}>Login</Link>
           </p>
           <button type="submit">Sign Up</button>
         </form>

@@ -245,6 +245,7 @@ function ApiRentCar() {
     getInvoiceByPaymentMethod,
     getByPaymentMethodAndMonth,
     getByPaymentMethodAndYear,
+    getCarsAvailables,
   };
 }
 

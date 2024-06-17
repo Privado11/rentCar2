@@ -12,7 +12,9 @@ function Header() {
           <nav className="navHeader">
             <ul>
               <li className="btnNavegacion">
-                <Link className="link" to={'/'} id="">Inicio</Link>
+                <Link className="link" to={"/"} id="">
+                  Inicio
+                </Link>
               </li>
             </ul>
           </nav>
@@ -31,4 +33,4 @@ function Header() {
   );
 }
 
-export default Header;
+export { Header };

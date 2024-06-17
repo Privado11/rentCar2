@@ -1,57 +1,35 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "../styles/MenuBar.css";
-import { contexto } from "../context/ContextoGeneral";
+import { useRentCar } from "../context/RentCarContext";
 
 function MenuBar() {
-  const {
-    listaCiudades,
-    urlBase,
-    verificacion,
-    getData,
-    getIdCiudad,
-    setListaAutosFiltrados,
-    conversionFecha,
-    setFiltroActual,
-  } = useContext(contexto);
+  const { salesBranch } = useRentCar();
+
+  useEffect(() => {
+    console.log(salesBranch[0]?.city?.name);
+  }, [salesBranch]);
 
   function renderOpciones() {
-    if (listaCiudades != null) {
-      return (
-        <>
-          <option value="">Ciudades</option>
-          {listaCiudades.map((ciudad) => (
-            <option className="options" value={ciudad.name} key={ciudad.id}>
-              {ciudad.name}
-            </option>
-          ))}
-        </>
-      );
-    }
-    return <option value="">Ciudades</option>;
+    return (
+      <>
+        <option value="">Ciudades</option>
+        {salesBranch.map((sales) => (
+          <option
+            className="options"
+            value={sales?.city?.name}
+            key={sales?.city?.id}
+          >
+            {sales?.city?.name}
+          </option>
+        ))}
+      </>
+    );
   }
 
-  function handleFiltrar(event) {
-    event.preventDefault();
-    const valor = Object.fromEntries(new window.FormData(event.target.form));
-    if (valor.locacion !== "Ciudades") {
-      const verificacionForm = verificacion(valor);
-      if (verificacionForm) {
-        const cityID = getIdCiudad(valor.locacion);
-        const fechaI = conversionFecha(valor.fechaInicial);
-        const fechaF = conversionFecha(valor.fechaFinal);
-        const endPoint = `cars/availables?cityId=${cityID}&startDate=${fechaI}&endDate=${fechaF}`;
-        getData(endPoint, urlBase, setListaAutosFiltrados);
-        let locacion = valor.locacion;
-        setFiltroActual({ locacion, fechaI, fechaF });
-      }
-    }
-  }
+  function handleFiltrar(event) {}
 
   function handleBorrar(event) {
     event.preventDefault();
-
-    setListaAutosFiltrados(null);
-    setFiltroActual({});
   }
 
   return (
@@ -76,4 +54,4 @@ function MenuBar() {
   );
 }
 
-export default MenuBar;
+export { MenuBar };

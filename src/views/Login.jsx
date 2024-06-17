@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRentCar } from "../context/RentCarContext";
 import "../styles/LoginStyle.css";
 
 function Login() {
   const { loginUser } = useRentCar();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -18,6 +19,7 @@ function Login() {
     try {
       event.preventDefault();
       loginUser(user);
+      navigate("/");
     } catch (error) {
       console.error("Error al procesar el registro:", error);
     }
