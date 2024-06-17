@@ -1,21 +1,19 @@
 import React, { useContext } from "react";
 import "../styles/CardStyle.css";
 import { Link } from "react-router-dom";
-import { contexto } from "../context/ContextoGeneral";
-import imgAuto from "../assets/model-3.avif";
+import imgcar from "../assets/model-3.avif";
 
-function Card({ auto }) {
-  const { setAutoRentar } = useContext(contexto);
-  const { brand, model, year, price, city, id } = auto;
+function Card({ car }) {
+  const { brand, model, year, price, city, id } = car;
 
   function handleClick() {
-    setAutoRentar(auto);
+    setcarRentar(car);
   }
 
   return (
     <div className="card">
       <div className="contenedorImagen">
-        <img src={imgAuto} alt="imagen de auto" />
+        <img src={imgcar} alt="imagen de car" />
       </div>
       <h2>{brand}</h2>
       <p>

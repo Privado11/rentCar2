@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useRentCar } from "../context/RentCarContext";
 import "../styles/LoginStyle.css";
-import { contexto } from "../context/ContextoGeneral";
 
 function Login() {
-  const { postDato, urlBase } = useContext(contexto);
+  const { loginUser } = useRentCar();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -16,15 +17,11 @@ function Login() {
   function handleSubmit(event) {
     try {
       event.preventDefault();
-      postDato("auth/login", "https://rentcar-production.up.railway.app", user);
+      loginUser(user);
     } catch (error) {
       console.error("Error al procesar el registro:", error);
     }
   }
-
-  useEffect(() => {
-    console.log("User:", user);
-  }, [user]);
 
   return (
     <form className="form_main" onSubmit={handleSubmit}>
@@ -76,7 +73,7 @@ function Login() {
       <button id="button">Submit</button>
       <div className="signupContainer">
         <p>Don't have any account?</p>
-        <a href="#">Sign up</a>
+        <Link to="/register">Sign up</Link>
       </div>
     </form>
   );

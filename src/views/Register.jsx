@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useRentCar } from "../context/RentCarContext";
 import "../styles/RegisterStyle.css";
-import { contexto } from "../context/ContextoGeneral";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
-  const { postDato, urlBase } = useContext(contexto);
+  const { registerUser } = useRentCar();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     lastName: "",
@@ -21,11 +23,8 @@ function Register() {
   function handleSubmit(event) {
     try {
       event.preventDefault();
-      postDato(
-        "auth/register",
-        "https://rentcar-production.up.railway.app",
-        user
-      );
+      registerUser(user);
+      navigate("/");
     } catch (error) {
       console.error("Error al procesar el registro:", error);
     }
@@ -92,7 +91,7 @@ function Register() {
           />
 
           <p className="text">
-            Already have an account? <a href="#">Login</a>
+            Already have an account? <Link to={"/"}>Login</Link>
           </p>
           <button type="submit">Sign Up</button>
         </form>
