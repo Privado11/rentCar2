@@ -1,0 +1,81 @@
+/* Contenedor principal */
+.container-home {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+}
+
+/* Secciones dentro del contenedor */
+.container-home-section {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container-home-section:first-child {
+  background: url("https://www.cnet.com/a/img/resize/19e740ede56ed4f5521160d5c4e1cb83e703fee8/hub/2022/04/01/3cef3878-2a93-4ce9-9287-4d2adcba8776/2022-lamborghini-aventador-ultimae-031.jpg?auto=webp&fit=crop&height=1293&width=2300")
+    no-repeat center center;
+  background-size: cover;
+}
+
+.container-home-section:first-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Filtro oscuro sobre la imagen */
+  pointer-events: none; /* Asegura que el pseudo-elemento no interfiera con la interacción del usuario */
+}
+
+/* Contenedor del texto sobre la imagen */
+.home__text-container {
+  position: relative;
+  top: 20%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff; /* Color del texto */
+
+  padding: 1rem;
+  border-radius: 0.5rem;
+  z-index: 1; /* Asegura que el texto esté sobre el pseudo-elemento */
+}
+
+.home__title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.home__text {
+  font-size: 1.2rem;
+}
+
+.home__button {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  background-color: transparent;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.home__button:hover {
+  background-color: #e6c700;
+  color: #000;
+}
+
+/* Ejemplo de estilo para la segunda sección */
+.container-home-section:nth-child(2) {
+  background-color: #e0e0e0; /* Color de fondo de la segunda sección */
+  padding: 20px;
+}

@@ -77,9 +77,20 @@ function ApiRentCar() {
     setUser(null);
   };
 
-  const getData = async (endPoint, setters) => {
+  const getDataA = async (endPoint, setters) => {
     try {
       const response = await apiInstance.get(endPoint);
+      setters(response.data);
+    } catch (error) {
+      console.error(`Error al obtener datos de ${endPoint}:`, error);
+    }
+  };
+
+  const getData = async (endPoint, setters) => {
+    try {
+      const response = await axios.get(
+        `https://rentcar-production.up.railway.app/api/v1/${endPoint}`
+      );
       setters(response.data);
     } catch (error) {
       console.error(`Error al obtener datos de ${endPoint}:`, error);
@@ -142,28 +153,28 @@ function ApiRentCar() {
   };
 
   //cars
-  const getCars = () => getData("cars", setCars);
+  const getCars = () => getDataA("cars", setCars);
   const getCarsAvailables = () => getData("cars/available", setCars);
   const getCarsAvailablesByCityAndDate = (cityId, startDate, endDate) =>
-    getData(
+    getDataA(
       `cars/availables?cityId=${cityId}&startDate=${startDate}&endDate=${endDate}`,
       setCars
     );
   const saveCar = (car) => postData("cars", car);
   const putCar = (id, car) => putData("cars", id, car);
   const deleteCar = (id) => deleteData("cars", id);
-  const getCarById = (id) => getData(`cars/${id}`);
+  const getCarById = (id) => getDataA(`cars/${id}`);
 
   //Usuarios
   const putUser = (id, user) => putData("users", id, user);
   const deleteUser = (id) => deleteData("users", id);
-  const getUserById = (id) => getData(`users/${id}`);
+  const getUserById = (id) => getDataA(`users/${id}`);
   const getUserByEmail = (email) =>
     getDataParams("users/email", "email", email, setUser);
 
   //reservations
   const getReservation = (id) =>
-    getData(`reservation/user/${id}`, setReservations);
+    getDataA(`reservation/user/${id}`, setReservations);
   const saveReservation = (Reservation) => postData("reservation", Reservation);
   const putReservation = (id, Reservation) =>
     putData("reservation", id, Reservation);
@@ -178,8 +189,8 @@ function ApiRentCar() {
   const deleteSalesBranch = (id) => deleteData("sales-branches", id);
 
   //invoices
-  const getInvoices = () => getData("invoices", setInvoices);
-  const getInvoiceById = (id) => getData(`invoices/${id}`, setInvoices);
+  const getInvoices = () => getDataA("invoices", setInvoices);
+  const getInvoiceById = (id) => getDataA(`invoices/${id}`, setInvoices);
   const saveInvoice = (invoice) => postData("invoices", invoice);
   const putInvoice = (id, invoice) => putData("invoices", id, invoice);
   const deleteInvoice = (id) => deleteData("invoices", id);

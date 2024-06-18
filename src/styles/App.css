@@ -1,15 +1,21 @@
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
 * {
-  margin: 0 ;
+  margin: 0;
   padding: 0;
   text-align: center;
   box-sizing: border-box;
 }
-body{
+body {
   width: 100%;
   height: 100%;
 }
 
-ul{
+ul {
   list-style: none;
 }
 
@@ -24,4 +30,3 @@ ul{
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbcc);
 }
-

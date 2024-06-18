@@ -6,6 +6,7 @@ import { Register } from "./views/Register";
 import { useRentCar } from "./context/RentCarContext";
 import { Main } from "./views/Main";
 import { Header } from "./views/Header";
+import { Home } from "./views/Home";
 
 function App() {
   const { user } = useRentCar();
@@ -15,15 +16,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/"
-            element={user ? <Main /> : <Navigate to="/login" />}
-          />
+          <Route path="/" element={<Home />} />
 
           <Route path="/register" element={<Register />} />
           <Route path="/rent" />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </>
   );
